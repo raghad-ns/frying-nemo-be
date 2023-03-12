@@ -1,3 +1,5 @@
+import express from "express";
+
 export interface IItem {
   name: string;
   imageUrl: string;
@@ -7,6 +9,6 @@ export interface IItem {
   ingredients: string[];
 }
 
-export interface IItemRequest extends Express.Request {
+export interface IItemRequest extends express.Request {
   body: IItem
 }

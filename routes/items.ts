@@ -12,7 +12,6 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req: IItemRequest, res) => {
-
   if (!req.body.name || !req.body.category) {
     return res.status(400).send("Name and category are required!");
   }
