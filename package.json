@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "This is be end server and API of frying nemo react project",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tsc",

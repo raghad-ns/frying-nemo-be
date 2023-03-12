@@ -6,7 +6,7 @@ const ItemSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  imageUrl: String,
+  imageUrl: 'String',
   description: String,
   price: {
     type: 'Number'

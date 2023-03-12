@@ -1,7 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import { Item } from './models/index.js';
+import { Item } from './models';
 
 dotenv.config();
 
@@ -15,7 +15,7 @@ app.get('/', (req: Request, res: Response) => {
 app.get('/createItemTmp', (req: Request, res: Response) => {
 
   const newItem = new Item({
-    name: 'Qidra',
+    name: 'Heborn Qidra',
     category: 'Main Dish',
     ingredients: ['rice', 'water', 'salt', 'chicken'],
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam architecto illo facere, officiis ab, vitae itaque voluptatem repudiandae perspiciatis',
