@@ -1,34 +1,18 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import { Item } from './models';
+import itemsRouter from './routes/items';
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT || 3001;
+app.use(express.json());
+
+app.use('/items', itemsRouter);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Your Server is working fine!');
-});
-
-app.get('/createItemTmp', (req: Request, res: Response) => {
-
-  const newItem = new Item({
-    name: 'Heborn Qidra',
-    category: 'Main Dish',
-    ingredients: ['rice', 'water', 'salt', 'chicken'],
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam architecto illo facere, officiis ab, vitae itaque voluptatem repudiandae perspiciatis',
-    price: 20.5
-  });
-
-  newItem.save()
-    .then(() => {
-      res.send("Item is Added :/");
-    })
-    .catch((err: mongoose.Error) => {
-      res.status(500).send("Failed to add :( " + err.message);
-    })
 });
 
 app.listen(port, () => {
