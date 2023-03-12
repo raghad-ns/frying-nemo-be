@@ -24,7 +24,7 @@ app.get('/createItemTmp', (req: Request, res: Response) => {
 
   newItem.save()
     .then(() => {
-      res.send("Item is added :/");
+      res.send("Item is Added :/");
     })
     .catch((err: mongoose.Error) => {
       res.status(500).send("Failed to add :( " + err.message);
