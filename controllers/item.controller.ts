@@ -10,8 +10,8 @@ const getItems = async (params: MenuItem.ItemQuery) => {
     query.price = { $lte: params.maxPrice }
   }
 
-  if (params.category) {
-    query.category = { $eq: params.category }
+  if (params.categories) {
+    query.category = { $in: params.categories }
   }
 
   if (params.searchTerms) {
