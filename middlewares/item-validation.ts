@@ -1,7 +1,7 @@
 import express from 'express';
-import { IItemRequest } from '../types/index';
+import { MenuItem } from '../types/index';
 
-export const validateItem = (req: IItemRequest, res: express.Response, next: express.NextFunction) => {
+export const validateItem = (req: MenuItem.ItemRequest, res: express.Response, next: express.NextFunction) => {
   if (!req.body.name || !req.body.category) {
     return res.status(400).send("Name and category are required!");
   }
