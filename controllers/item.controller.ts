@@ -9,9 +9,10 @@ const getItems = async (params: MenuItem.ItemQuery) => {
   if (params.maxPrice !== undefined) {
     query.price = { $lte: params.maxPrice }
   }
-  
-  if (params.categories) {
-    query.category = { $in: JSON.parse(params.categories) }
+
+  const categories = JSON.parse(params.categories || '[]');
+  if (categories.length) {
+    query.category = { $in: categories }
   }
 
   if (params.searchTerms) {
