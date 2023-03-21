@@ -33,10 +33,12 @@ const getItems = async (params: MenuItem.ItemQuery) => {
   return items;
 }
 
-const createItem = (req: MenuItem.ItemRequest) => {
+const createItem = (req: MenuItem.ItemRequest) => {  
   const newItem = new Item({
     name: req.body.name,
     category: req.body.category,
+    imageUrl: req.body.imageUrl,
+    price: req.body.price,
     ingredients: req.body.ingredients,
     description: req.body.description
   });
