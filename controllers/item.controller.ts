@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 import { Item } from "../models/index";
 import { MenuItem } from '../types/index';
 
-
 const getItems = async (params: MenuItem.ItemQuery) => {
   const query: mongoose.FilterQuery<MenuItem.Item> = {};
 
@@ -26,14 +25,12 @@ const getItems = async (params: MenuItem.ItemQuery) => {
     ]
   }
 
-  console.log(query);
-
-  const items = await Item.find(query);
+  const items = await Item.find(query, null, { sort: { '_id': -1 } });
 
   return items;
 }
 
-const createItem = (req: MenuItem.ItemRequest) => {  
+const createItem = (req: MenuItem.ItemRequest) => {
   const newItem = new Item({
     name: req.body.name,
     category: req.body.category,
@@ -43,8 +40,12 @@ const createItem = (req: MenuItem.ItemRequest) => {
     description: req.body.description
   });
 
-  newItem.price = req.body.price || 10;
-
+  // if (req.body.price === null || req.body.price === undefined) {
+  //   newItem.price = 10;
+  // }
+  
+  newItem.price = req.body.price ?? 10;
+  
   return newItem.save()
     .then(() => {
       return true; // created successfully      
