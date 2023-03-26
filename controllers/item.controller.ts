@@ -30,6 +30,23 @@ const getItems = async (params: MenuItem.ItemQuery) => {
   return items;
 }
 
+const getItemById = async (itemId: string) => {
+  const itemDoc = await Item.findById(itemId);
+  if (itemDoc) {
+    const item: MenuItem.Item = {
+      name: itemDoc.name,
+      category: itemDoc.category,
+      description: itemDoc.description || '',
+      imageUrl: itemDoc.imageUrl || '',
+      ingredients: itemDoc.ingredients,
+      price: itemDoc.price || 0
+    }
+
+    return item;
+  }
+  return null;
+}
+
 const createItem = (req: MenuItem.ItemRequest) => {
   const newItem = new Item({
     name: req.body.name,
@@ -43,9 +60,9 @@ const createItem = (req: MenuItem.ItemRequest) => {
   // if (req.body.price === null || req.body.price === undefined) {
   //   newItem.price = 10;
   // }
-  
+
   newItem.price = req.body.price ?? 10;
-  
+
   return newItem.save()
     .then(() => {
       return true; // created successfully      
@@ -54,5 +71,6 @@ const createItem = (req: MenuItem.ItemRequest) => {
 
 export default {
   getItems,
+  getItemById,
   createItem
 }
