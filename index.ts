@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import itemsRouter from './routes/items.router';
+import userRouter from './routes/users.router';
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(cors({ origin: 'http://localhost:3000' }));
 app.use(express.json());
 
 app.use('/items', itemsRouter);
+app.use('/users', userRouter);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Your Server is working fine!');

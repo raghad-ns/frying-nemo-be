@@ -26,7 +26,7 @@ export namespace MenuItem {
   // }
 }
 
-export namespace User {
+export namespace UserNS {
   export interface IUser {
     email: string;
     password: string;
@@ -35,4 +35,7 @@ export namespace User {
     imageUrl: string;
     authToken: string;
   }
+
+  // with generic types
+  export interface UserRequest extends express.Request<{}, {}, UserNS.IUser, {}> { }
 }
