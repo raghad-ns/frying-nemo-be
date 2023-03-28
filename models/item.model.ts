@@ -19,7 +19,11 @@ const ItemSchema = new mongoose.Schema({
     type: [String],
     default: []
   },
-  // addedBy: Schema.Types.ObjectId
+  addedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    // type: 'ObjectId',
+    ref: 'User'
+  }
 });
 
 const Item = mongoose.model("Item", ItemSchema);

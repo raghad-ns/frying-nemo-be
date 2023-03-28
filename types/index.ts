@@ -8,6 +8,7 @@ export namespace MenuItem {
     price: number;
     category: string;
     ingredients: string[];
+    addedBy?: string;
   }
 
   export interface ItemQuery {
