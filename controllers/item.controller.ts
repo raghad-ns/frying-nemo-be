@@ -44,10 +44,11 @@ const getItems = async (params: MenuItem.ItemQuery) => {
 }
 
 const getItemById = async (itemId: string) => {
-  const itemDoc = await Item.findById(itemId).populate({
-    path: 'addedBy',
-    select: ['fullName', 'email', 'imageUrl']
-  });
+  const itemDoc = await Item.findById(itemId)
+    .populate({
+      path: 'addedBy',
+      select: ['fullName', 'email', 'imageUrl']
+    });
 
   if (itemDoc) {
     const item: MenuItem.Item = {
@@ -56,7 +57,8 @@ const getItemById = async (itemId: string) => {
       description: itemDoc.description || '',
       imageUrl: itemDoc.imageUrl || '',
       ingredients: itemDoc.ingredients,
-      price: itemDoc.price || 0
+      price: itemDoc.price || 0,
+      addedBy: itemDoc.addedBy
     }
 
     return item;
