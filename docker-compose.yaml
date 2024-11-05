@@ -1,0 +1,46 @@
+version: "3" # docker compose expect this value to be a string, that's why I wrap it with quotes
+# In this section, we define services to docker and tell docker how to build images for these services and how to run
+services:
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    networks:
+      - mongoNode
+    volumes:
+      # We map the volume named "pos" to the directory "/data/db" in the container instead of being stored in the temporary files in the container.
+      # This means that all data stored by our app will persist even if we restart the container.
+      - pos:/data/db # The volume should be defined in the compose file
+  api: 
+    build: 
+      context: .  
+      dockerfile: Dockerfile
+    ports:
+      - 3001:3001
+    networks:
+      - mongoNode
+    depends_on:
+      - mongo
+    environment:
+      PORT: 3001
+      DATABASE_SERVER_URL: mongodb://mongo:27017/pos-app # The database host name "pos-db" in our case should match the service name of the MongoDB container.
+      # Environment variables could be listed that way too: 
+      # - PORT=3001
+      # - DATABASE_SERVER_URL=mongodb://mongo:27017/pos-app 
+    # develop: #  A custom configuration profile for development purposes, revise it
+    #   watch: # The value of this is the list of rules that control the automatic service updates based on local file chagnes
+    #     - action: sync # will keep any file in the path directory synchronized with the target directory of the docker container 
+    #       path: .
+    #       target: /usr/src/app
+    #       ignore: 
+    #         - node_modules/ # Ignore any changes in the node modules
+    #     - action: rebuild # Rebuild when packages.json updated
+    #       path: package.json
+
+volumes:
+  # Define the volume first, before using it
+  pos: 
+networks:
+  mongoNode:
+    # driver propery specifies the network type 
+    driver: bridge
