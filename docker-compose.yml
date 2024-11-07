@@ -24,19 +24,7 @@ services:
     environment:
       PORT: 3001
       DATABASE_SERVER_URL: mongodb://mongo:27017/pos-app # The database host name "pos-db" in our case should match the service name of the MongoDB container.
-      # Environment variables could be listed that way too: 
-      # - PORT=3001
-      # - DATABASE_SERVER_URL=mongodb://mongo:27017/pos-app 
-    # develop: #  A custom configuration profile for development purposes, revise it
-    #   watch: # The value of this is the list of rules that control the automatic service updates based on local file chagnes
-    #     - action: sync # will keep any file in the path directory synchronized with the target directory of the docker container 
-    #       path: .
-    #       target: /usr/src/app
-    #       ignore: 
-    #         - node_modules/ # Ignore any changes in the node modules
-    #     - action: rebuild # Rebuild when packages.json updated
-    #       path: package.json
-
+      
 volumes:
   # Define the volume first, before using it
   pos: 

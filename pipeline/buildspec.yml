@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installation phase...
+      - yum update -y
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR 🚀 ...
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/y1j8x5z1
+
+  build:
+    commands:
+      - echo Building the Docker image 🐳 ...
+      - docker build --build-arg PORT=$PORT --build-arg DATABASE_SERVER_URL=$DATABASE_SERVER_URL --build-arg SECRET_KEY=$SECRET_KEY -t cloud-test . --no-cache
+
+  post_build:
+    commands:
+      - echo  Pushing the Docker images 🐳 ...
+      - docker tag cloud-test:latest public.ecr.aws/y1j8x5z1/cloud-test:latest
+      - docker push public.ecr.aws/y1j8x5z1/cloud-test:latest
+
+artifacts:
+  files:
+    - pipeline/scripts/*.sh
+    - pipeline/appspec.yml
+  discard-paths: yes

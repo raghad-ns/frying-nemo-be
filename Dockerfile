@@ -7,6 +7,14 @@
 # Step1: determine the environment where the container will run
 FROM node:16.14.0 as builder
 
+ARG SECRET_KEY \
+    DATABASE_SERVER_URL \
+    PORT
+
+ENV SECRET_KEY=$SECRET_KEY \
+    DATABASE_SERVER_URL=$DATABASE_SERVER_URL \
+    PORT=$PORT
+
 # this line is like when you are cd to a specific directory
 # Step2: cd to the working directory
 WORKDIR /usr/app
