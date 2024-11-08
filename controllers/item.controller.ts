@@ -4,7 +4,6 @@ import { MenuItem } from '../types/index';
 
 const getItems = async (params: MenuItem.ItemQuery) => {
   const query: mongoose.FilterQuery<MenuItem.Item> = {};
-
   if (params.maxPrice !== undefined) {
     query.price = { $lte: params.maxPrice }
   }
