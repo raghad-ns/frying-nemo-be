@@ -30,7 +30,7 @@ const getItems = async (params: MenuItem.ItemQuery) => {
       select: ['fullName', 'email', 'imageUrl']
     });
 
-  // If you want edit the data before sending them to client
+  // If you want edit the data before sending them to client 
   // const parsedItem = items.map(itm => (
   //   {
   //     ...itm.toJSON(),
