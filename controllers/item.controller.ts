@@ -4,7 +4,6 @@ import { MenuItem } from '../types/index';
 
 const getItems = async (params: MenuItem.ItemQuery) => {
   const query: mongoose.FilterQuery<MenuItem.Item> = {};
-
   if (params.maxPrice !== undefined) {
     query.price = { $lte: params.maxPrice }
   }
@@ -31,7 +30,7 @@ const getItems = async (params: MenuItem.ItemQuery) => {
       select: ['fullName', 'email', 'imageUrl']
     });
 
-  // If you want edit the data before sending them to client
+  // If you want edit the data before sending them to client 
   // const parsedItem = items.map(itm => (
   //   {
   //     ...itm.toJSON(),
