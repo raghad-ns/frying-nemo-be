@@ -2,12 +2,12 @@ version: 0.0
 os: linux
 files: 
   - source: /
-    destination: /home/ubuntu/devops-training
+    destination: /home/cloud-task
 hooks: 
-  ApplicationStop: 
-    - location: stop_container.sh
-      runas: root
-      timeout: 10000
+  # ApplicationStop: 
+  #   - location: stop_container.sh
+  #     runas: root
+  #     timeout: 10000
   ApplicationStart: 
     - location: start_container.sh
       runas: root
