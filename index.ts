@@ -18,7 +18,7 @@ app.use('/items', itemsRouter);
 app.use('/users', userRouter);
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Your Server is working fine!');
+  res.send('Congrats! Your Server is working fine!');
 });
 
 app.listen(port, () => {
