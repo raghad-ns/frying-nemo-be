@@ -4,6 +4,9 @@ files:
   - source: /
     destination: /home/cloud-task
 hooks: 
+  # BeforeInstall: 
+  #   - location: before_install.sh
+  #     runas: root
   AfterInstall: 
     - location: stop_container.sh
       runas: root
